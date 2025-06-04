@@ -30,6 +30,19 @@ def simular_escenario_1(
     # Data para resultados
     datos = []
 
+    resultados.append({
+         "Año": 0,
+            "Pisos": pisos_comprados,
+            "Precio Piso (€/ud)": round(precio_piso_inicial, 2),
+            "Cashflow Anual (€)": round(cashflow_anual, 2),
+            "Ahorro (€)": round(ahorro, 2),
+            "Deuda Hipotecaria (€)": round(deuda_total, 2),
+            "Patrimonio Neto (€)": round(patrimonio, 2),
+            "Pago Hipoteca Anual (€)": round(calcular_pago_hipoteca(precio_piso_actual, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados, 2),
+            "Flujo de Caja (€)": round(flujo_de_caja, 2)
+    })
+
+
     for año in range(1, años + 1):
         # Revalorización precios y cashflow
         precio_piso_actual = precio_piso_inicial * ((1 + revalorizacion_anual) ** año)
