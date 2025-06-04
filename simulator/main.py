@@ -1,4 +1,4 @@
-from simulator.simulacion import simular_escenario_1
+from simulator.scenario1 import simular_escenario_1
 import streamlit as st
 
 st.sidebar.header("Parámetros Generales")
