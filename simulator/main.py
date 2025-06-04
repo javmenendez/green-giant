@@ -23,7 +23,7 @@ porcentaje_financiacion = st.sidebar.selectbox("Porcentaje financiado (%)", [70,
 duracion_hipoteca = st.sidebar.selectbox("Duración hipoteca (años)", [20, 25, 30], index=2)
 
 if st.button("Simular"):
-    resultados = simular_inversion(años, interes, porcentaje_financiacion, duracion_hipoteca)
+    resultados = simular_inversion(años, interes_hipoteca, porcentaje_financiacion, duracion_hipoteca)
     st.write("### Resultados de la simulación")
     st.dataframe(resultados)
     st.line_chart(resultados.set_index("Año")[["Patrimonio (€)", "Cashflow (€)"]])
