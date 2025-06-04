@@ -30,7 +30,7 @@ def simular_escenario_1(
     # Data para resultados
     datos = []
 
-    resultados.append({
+    datos.append({
          "Año": 0,
             "Pisos": pisos_comprados,
             "Precio Piso (€/ud)": round(precio_piso_inicial, 2),
