@@ -38,7 +38,7 @@ def simular_escenario_1(
             "Ahorro (€)": round(ahorro, 2),
             "Deuda Hipotecaria (€)": round(deuda_total, 2),
             "Patrimonio Neto (€)": round(patrimonio, 2),
-            "Pago Hipoteca Anual (€)": round(calcular_pago_hipoteca(precio_piso_actual, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados, 2),
+            "Pago Hipoteca Anual (€)": round(calcular_pago_hipoteca(precio_piso_inicial, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados, 2),
             "Flujo de Caja (€)": round(flujo_de_caja, 2)
     })
 
