@@ -69,13 +69,13 @@ def simular_escenario_1(
         datos.append({
             "Año": año,
             "Pisos": pisos_comprados,
-            "Precio Piso (€/ud)": round(precio_piso_actual, 2),
-            "Cashflow Anual (€)": round(cashflow_actual, 2),
-            "Ahorro (€)": round(ahorro, 2),
-            "Deuda Hipotecaria (€)": round(deuda_total, 2),
-            "Patrimonio Neto (€)": round(patrimonio, 2),
-            "Pago Hipoteca Anual (€)": round(pago_hipoteca_anual, 2),
-            "Flujo de Caja (€)": round(flujo_de_caja, 2)
+            "Precio Piso (€/ud)": formatear_precio(precio_piso_actual),
+            "Cashflow Anual (€)": formatear_precio(cashflow_actual),
+            "Ahorro (€)": formatear_precio(ahorro),
+            "Deuda Hipotecaria (€)": formatear_precio(deuda_total),
+            "Patrimonio Neto (€)": formatear_precio(patrimonio),
+            "Pago Hipoteca Anual (€)": formatear_precio(pago_hipoteca_anual),
+            "Flujo de Caja (€)": formatear_precio(flujo_de_caja)
         })
 
     return pd.DataFrame(datos)
@@ -94,4 +94,11 @@ def calcular_pago_hipoteca(precio, porcentaje_financiacion, interes, duracion):
 
     pago_anual = importe_financiado * (i * (1 + i) ** n) / ((1 + i) ** n - 1)
     return pago_anual
+
+def formatear_precio(cantidad):
+    """
+    Formatea un número como precio sin decimales y con puntos para separar los miles.
+    Ejemplo: 1234567.89 -> "1.234.568"
+    """
+    return f"{int(round(cantidad, 0)):_.0f}".replace("_", ".")
 
