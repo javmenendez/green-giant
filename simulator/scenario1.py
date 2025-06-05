@@ -88,7 +88,7 @@ def simular_escenario_1(
             "Patrimonio Neto (€)": formatear_precio(patrimonio),
             "Pago Hipoteca Anual (€)": formatear_precio(calcular_pago_hipoteca(precio_piso_inicial, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados),
             # "Flujo de Caja (€)": formatear_precio(flujo_de_caja)
-            "Precio Piso (€/ud)": formatear_precio(precio_piso_inicial),
+            "Precio Piso (€/ud)": formatear_precio(precio_piso_actual),
             "Alquiler Anual (€)": formatear_precio(alquiler_anual),
             "Gastos Anuales (€)": formatear_precio(gastos_anuales),
             "Beneficio Anual (€)": formatear_precio(beneficio_anual),
