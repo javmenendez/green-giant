@@ -18,6 +18,9 @@ incremento_cashflow = st.sidebar.slider("Incremento anual cashflow (%)", min_val
 incremento_ahorro = st.sidebar.slider("Incremento anual ahorro (%)", min_value=0.0, max_value=10.0, value=2.0) / 100
 saldo_minimo = st.sidebar.number_input("Saldo mínimo en cuenta (€)", value=20000)
 
+alquiler_medio_mes = st.sidebar.number_input("Alquiler medio al mes (€)", value=900)
+gastos_medios_mes = st.sidebar.number_input("Gastos medios al mes (€)", value=400)
+
 if st.sidebar.button("Simular Escenario 1"):
     df_resultados = simular_escenario_1(
         años=años,
@@ -33,6 +36,8 @@ if st.sidebar.button("Simular Escenario 1"):
         incremento_cashflow=incremento_cashflow,
         incremento_ahorro=incremento_ahorro,
         saldo_minimo=saldo_minimo,
+        alquier_medio_mes=alquiler_medio_mes,
+        gastos_medios_mes=gastos_medios_mes
     )
 
     st.subheader("Resultados Simulación Escenario 1")
