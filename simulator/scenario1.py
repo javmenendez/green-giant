@@ -18,7 +18,7 @@ def simular_escenario_1(
     gastos_medios_mes=450,
 ):
     """
-    Simulación del Escenario 1: compra continua de pisos con ahorro y reinversión
+    Simulación del Escenario 1: compra continua de pisos con ahorro y reinversión ()
     """
 
     # Estado inicial
