@@ -14,6 +14,8 @@ def simular_escenario_1(
     incremento_cashflow=0.02,
     incremento_ahorro=0.02,
     saldo_minimo=20000,
+    alquiler_medio_mes=900,
+    gastos_medios_mes=450,
 ):
     """
     Simulación del Escenario 1: compra continua de pisos con ahorro y reinversión
