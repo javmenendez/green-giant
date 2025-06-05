@@ -36,7 +36,7 @@ if st.sidebar.button("Simular Escenario 1"):
         incremento_cashflow=incremento_cashflow,
         incremento_ahorro=incremento_ahorro,
         saldo_minimo=saldo_minimo,
-        alquier_medio_mes=alquiler_medio_mes,
+        alquiler_medio_mes=alquiler_medio_mes,
         gastos_medios_mes=gastos_medios_mes
     )
 
