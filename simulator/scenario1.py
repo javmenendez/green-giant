@@ -71,7 +71,7 @@ def simular_escenario_1(
             "Pisos": pisos_comprados,
             "Precio Piso (€/ud)": formatear_precio(precio_piso_actual),
             "Cashflow Anual (€)": formatear_precio(cashflow_actual),
-            "Ahorro (€)": formatear_precio(ahorro),
+            "Ahorro (€)": "ahorro",
             "Deuda Hipotecaria (€)": formatear_precio(deuda_total),
             "Patrimonio Neto (€)": formatear_precio(patrimonio),
             "Pago Hipoteca Anual (€)": formatear_precio(pago_hipoteca_anual),
