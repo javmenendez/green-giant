@@ -6,7 +6,7 @@ def simular_escenario_1(
     cashflow_inicial=2750,
     coste_inversion=50000,
     ahorro_inicial=20000,
-    ahorro_anual=25000 * 2,  # dos titulares
+    ahorro_anual=25000,  
     porcentaje_financiacion=0.7,
     interes_hipoteca=0.03,
     duracion_hipoteca=30,
@@ -23,31 +23,41 @@ def simular_escenario_1(
 
     # Estado inicial
     pisos_comprados = 3
-    deuda_total = (precio_piso_inicial * porcentaje_financiacion - coste_inversion) * pisos_comprados
+    deuda_total = (precio_piso_inicial * porcentaje_financiacion) * pisos_comprados
     ahorro = ahorro_inicial
     patrimonio = precio_piso_inicial * pisos_comprados - deuda_total + ahorro
     cashflow_anual = cashflow_inicial * pisos_comprados
     flujo_de_caja = 0
+    total_invertido = coste_inversion * pisos_comprados 
+    alquiler_anual = alquiler_medio_mes * 12 * pisos_comprados
+    gastos_anuales = gastos_medios_mes * 12 * pisos_comprados
+    beneficio_anual = alquiler_anual - gastos_anuales
 
     # Data para resultados
     datos = []
 
     datos.append({
-         "Año": 0,
+            "Año": 0,
             "Pisos": pisos_comprados,
-            "Precio Piso (€/ud)": round(precio_piso_inicial, 2),
-            "Cashflow Anual (€)": round(cashflow_anual, 2),
-            "Ahorro (€)": round(ahorro, 2),
-            "Deuda Hipotecaria (€)": round(deuda_total, 2),
-            "Patrimonio Neto (€)": round(patrimonio, 2),
-            "Pago Hipoteca Anual (€)": round(calcular_pago_hipoteca(precio_piso_inicial, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados, 2),
-            "Flujo de Caja (€)": round(flujo_de_caja, 2)
+            "Total Invertido (€)": formatear_precio(total_invertido),
+            "Cashflow Anual (€)": formatear_precio(cashflow_anual),
+            "Ahorro (€)": formatear_precio(ahorro),
+            "Deuda Hipotecaria (€)": formatear_precio(deuda_total),
+            "Patrimonio Neto (€)": formatear_precio(patrimonio),
+            "Pago Hipoteca Anual (€)": formatear_precio(calcular_pago_hipoteca(precio_piso_inicial, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados),
+            # "Flujo de Caja (€)": formatear_precio(flujo_de_caja)
+            "Precio Piso (€/ud)": formatear_precio(precio_piso_inicial),
+            "Alquiler Anual (€)": formatear_precio(alquiler_anual),
+            "Gastos Anuales (€)": formatear_precio(gastos_anuales),
+            "Beneficio Anual (€)": formatear_precio(beneficio_anual),
+           
     })
 
 
     for año in range(1, años + 1):
         # Revalorización precios y cashflow
         precio_piso_actual = precio_piso_inicial * ((1 + revalorizacion_anual) ** año)
+        coste_inversion_actual = coste_inversion * ((1 + revalorizacion_anual) ** año)
         cashflow_actual = cashflow_inicial * ((1 + incremento_cashflow) ** año) * pisos_comprados
         ahorro_anual_actual = ahorro_anual * ((1 + incremento_ahorro) ** año)
 
@@ -59,25 +69,29 @@ def simular_escenario_1(
 
         # Actualizamos ahorro (dejando saldo mínimo)
         ahorro += flujo_de_caja
-        if ahorro > saldo_minimo:
+        if ahorro > saldo_minimo + coste_inversion_actual:
             # Se compra nuevo piso y se descuenta coste inversión y financiación
             pisos_comprados += 1
-            deuda_total += precio_piso_actual * porcentaje_financiacion - coste_inversion
-            ahorro -= (precio_piso_actual * porcentaje_financiacion - coste_inversion)
+            deuda_total += precio_piso_actual * porcentaje_financiacion - coste_inversion_actual
+            ahorro -= (precio_piso_actual * porcentaje_financiacion - coste_inversion_actual)
 
         # Actualizamos patrimonio neto
         patrimonio = precio_piso_actual * pisos_comprados - deuda_total + ahorro
 
-        datos.append({
+        datos.append({           
             "Año": año,
             "Pisos": pisos_comprados,
-            "Precio Piso (€/ud)": formatear_precio(precio_piso_actual),
-            "Cashflow Anual (€)": formatear_precio(cashflow_actual),
+            "Total Invertido (€)": formatear_precio(total_invertido),
+            "Cashflow Anual (€)": formatear_precio(cashflow_anual),
             "Ahorro (€)": formatear_precio(ahorro),
             "Deuda Hipotecaria (€)": formatear_precio(deuda_total),
             "Patrimonio Neto (€)": formatear_precio(patrimonio),
-            "Pago Hipoteca Anual (€)": formatear_precio(pago_hipoteca_anual),
-            "Flujo de Caja (€)": formatear_precio(flujo_de_caja)
+            "Pago Hipoteca Anual (€)": formatear_precio(calcular_pago_hipoteca(precio_piso_inicial, porcentaje_financiacion, interes_hipoteca, duracion_hipoteca) * pisos_comprados),
+            # "Flujo de Caja (€)": formatear_precio(flujo_de_caja)
+            "Precio Piso (€/ud)": formatear_precio(precio_piso_inicial),
+            "Alquiler Anual (€)": formatear_precio(alquiler_anual),
+            "Gastos Anuales (€)": formatear_precio(gastos_anuales),
+            "Beneficio Anual (€)": formatear_precio(beneficio_anual),
         })
 
     return pd.DataFrame(datos)
