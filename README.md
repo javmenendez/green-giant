@@ -7,3 +7,9 @@ Este proyecto es una aplicación web desarrollada con Streamlit que permite simu
 ```bash
 pip install -r requirements.txt
 streamlit run simulador/main.py
+
+## Run the Streamlit app
+
+```bash
+source venv/bin/activate  # Activate the virtual environment
+streamlit run simulator/main.py  # Run the app
